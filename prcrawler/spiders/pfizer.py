@@ -12,12 +12,17 @@ class PfizerSpider(BaseSpider):
     start_urls = ['https://www.pfizer.com/news/press-release/press-releases-archive']
     rules = (
         ## Extract links and follow them (no callback means follow=True)
-        Rule(LinkExtractor(allow=(r'/press-releases-archive',), deny=(r'\.pdf'))),
+        Rule(LinkExtractor(allow=(r'/press-releases-archive/',)), 
+        	follow=True),
         ## Extract links and parse them with parse() callback
-        Rule(LinkExtractor(allow=(r'/press-releases-archive/',)), callback='parse')
+        Rule(LinkExtractor(allow=(r'/press-releases-archive/',)), 
+        	callback='parse')
     )
 
-    # def parse(self, response):
-    #     """ uncomment to overwrite parse() method in PrcrawlerBaseSpider
-    #     """
-    #     pass
+    def parse(self, response):
+        """ call parent method; then add this spider name
+        """
+        item = super().parse(response)
+        item['spider'] = self.name
+        yield item
+        

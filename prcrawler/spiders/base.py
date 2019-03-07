@@ -19,9 +19,10 @@ class BaseSpider(scrapy.Spider):
         item['id'] = str(uuid4())
         item['timestamp'] = timestamp()
         item['date'] = datestring()
+        item['spider'] = ''
         item['url'] = response.url
         item['status'] = response.status
-        item['headers'] = '' #response.headers
-        item['flags'] = '' #response.flags
+        item['headers'] = str(response.headers)
+        item['flags'] = response.flags
         item['html'] = response.text
-        yield item
+        return item
