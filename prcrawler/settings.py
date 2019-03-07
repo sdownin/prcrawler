@@ -70,10 +70,10 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'prcrawler.pipelines.MongoPipeline': 300,
-   'prcrawler.pipelines.JsonWriterPipeline': 400,
-   'prcrawler.pipelines.PrcrawlerPipeline': 700,
-   'prcrawler.pipelines.DuplicatesPipeline': 800,
+    'prcrawler.pipelines.MongoPipeline': 300
+   # ,'prcrawler.pipelines.JsonWriterPipeline': 400
+   # ,'prcrawler.pipelines.PrcrawlerPipeline': 700
+   # ,'prcrawler.pipelines.DuplicatesPipeline': 800
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
