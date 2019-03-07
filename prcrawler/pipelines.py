@@ -60,6 +60,9 @@ class MongoPipeline(object):
                 valid = False
                 raise DropItem("Missing {0}!".format(data))
         if valid:
+        	### TODO: 
+        	###   - insert if not exists (upsert)
+        	###   - insert only if item has article title and body
             self.db[self.collection_name].insert_one(dict(item))
             logging.info("Item added to MongoDB!")
         return

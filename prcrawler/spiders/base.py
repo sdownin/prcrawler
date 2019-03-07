@@ -5,6 +5,7 @@ from uuid import uuid4
 from scrapy.spiders import CrawlSpider
 from scrapy.linkextractors import LinkExtractor
 from prcrawler.items import PrcrawlerItem
+from bs4 import BeautifulSoup
 from prcrawler.helpers import timestamp, datestring
 
 class BaseCrawlSpider(CrawlSpider): 
@@ -23,9 +24,9 @@ class BaseCrawlSpider(CrawlSpider):
         # self.logger.info('parsed item page %s\n' % response.url)
         item = PrcrawlerItem()
         item['id'] = str(uuid4())
-        item['timestamp'] = timestamp()
-        item['date'] = datestring()
         item['spider'] = self.name
+        item['crawl_timestamp'] = timestamp()
+        item['crawl_date'] = datestring()
         item['status'] = response.status
         item['headers'] = str(response.headers)
         item['flags'] = response.flags
@@ -33,6 +34,15 @@ class BaseCrawlSpider(CrawlSpider):
         item['url_from'] = response.url
         for key in args.keys():
             item[key] = args[key]
+        # ##------TODO: parsed article items--------
+        # bsoup = BeautifulSoup.parse(response.body, 'html.parser') ## 'lxml'
+        # pub_dt = self.parse_datetime(bsoup)
+        # pub_dt_tz = self.parse_timezone(bsoup)
+        # item['date'] = datestring(pub_dt, pub_dt_tz)
+        # item['timestamp'] = timestamp(pub_dt, pub_dt_tz)
+        # item['title'] = self.parse_title(bsoup)
+        # item['article'] = self.parse_article(bsoup)
+        # item['source'] = self.parse_source(bsoup)
         return item
 
     def parse_items(self, response):
@@ -50,3 +60,29 @@ class BaseCrawlSpider(CrawlSpider):
                     is_allowed = True
             if is_allowed:
                 yield self.parse_item(response, {'url_to':link.url})  
+
+
+    def parse_datetime(self, bsoup):
+        """ Return datetime.datetime from arbitrary numberic|text date formats
+        """
+        pass
+
+    def parse_timezone(self, bsoup):
+        """ Return datetime.datetime from arbitrary numberic|text date formats
+        """
+        pass
+
+    def parse_title(self, bsoup):
+        """
+        """
+        pass
+
+    def parse_article(self, bsoup):
+        """
+        """
+        pass
+
+    def parse_news_source(self, bsoup):
+        """
+        """
+        pass
