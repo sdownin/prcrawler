@@ -16,6 +16,8 @@ class PrcrawlerItem(scrapy.Item):
     date = scrapy.Field()
     spider = scrapy.Field()
     url = scrapy.Field()
+    url_from = scrapy.Field()
+    url_to = scrapy.Field()
     status = scrapy.Field()
     headers = scrapy.Field()
     flags = scrapy.Field()
