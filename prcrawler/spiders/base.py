@@ -26,11 +26,11 @@ class BaseCrawlSpider(CrawlSpider):
         item['timestamp'] = timestamp()
         item['date'] = datestring()
         item['spider'] = self.name
-        item['url_from'] = response.url
         item['status'] = response.status
         item['headers'] = str(response.headers)
         item['flags'] = response.flags
         item['html'] = response.text
+        item['url_from'] = response.url
         for key in args.keys():
             item[key] = args[key]
         return item
