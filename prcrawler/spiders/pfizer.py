@@ -6,15 +6,18 @@ from prcrawler.spiders.base import BaseSpider
 
 
 class PfizerSpider(BaseSpider):
+	##-----SET FIRM PARAMS-----------
     name = 'pfizer'
     allowed_domains = ['pfizer.com']
-    allow_only = 'press-release'
+    allow_regex = 'press-release'
     start_urls = [
         'https://www.pfizer.com/news/press-release/press-releases-archive'
     ]
+    ##-------------------------------
+
     rules = [
         ## Extract links and follow them (no callback means follow=True)
-        Rule(LinkExtractor(allow=allow_only), 
+        Rule(LinkExtractor(allow=allow_regex, unique=True), 
         	follow=True, callback='parse_items')
     ]
 
@@ -22,7 +25,7 @@ class PfizerSpider(BaseSpider):
         """ parse items in response from page request
         """
         # Links from the page
-        links = LinkExtractor(allow=self.allow_only).extract_links(response)
+        links = LinkExtractor(allow=self.allow_regex, unique=True).extract_links(response)
         # loop over links on page
         for link in links:
             # Check whether the domain of the URL of the link is allowed; so whether it is in one of the allowed domains
