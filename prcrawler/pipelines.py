@@ -5,8 +5,7 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
-import json, pymongo
-from scrapy import log
+import json, pymongo, logging
 from prcrawler import settings
 from scrapy.exceptions import DropItem
 
@@ -28,7 +27,7 @@ class JsonWriterPipeline(object):
     def process_item(self, item, spider):
         line = json.dumps(dict(item)) + "\n"
         self.file.write(line)
-        return item
+        return
 
 
 class MongoPipeline(object):
@@ -62,8 +61,8 @@ class MongoPipeline(object):
                 raise DropItem("Missing {0}!".format(data))
         if valid:
             self.db[self.collection_name].insert_one(dict(item))
-            log.msg("Item added to MongoDB!", level=log.DEBUG, spider=spider)
-        return item
+            logging.info("Item added to MongoDB!")
+        return
 
 
 class DuplicatesPipeline(object):
