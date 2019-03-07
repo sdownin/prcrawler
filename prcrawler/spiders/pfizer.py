@@ -7,7 +7,7 @@ from prcrawler.spiders.base import BaseCrawlSpider
 
 class PfizerSpider(BaseCrawlSpider):
 	
-	##------FIRM-SPECIFIC PARAMS-----------
+    ##------FIRM-SPECIFIC PARAMS-----------
     name = 'pfizer'
     allowed_domains = ['pfizer.com']
     allow_regex = 'press-release'
