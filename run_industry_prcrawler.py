@@ -21,14 +21,14 @@ from prcrawler.spiders import pfizer
 #     'pharma':[
 #         pfizer.PfizerSpider
 #     ],
-#     'auto':[
+#     'automotive':[
 #     ]
 # }
 INDUSTRY_SPIDER_NAMES = {
     'pharma':[
         'pfizer'
     ],
-    'auto':[
+    'automotive':[
     ]
 }
 
