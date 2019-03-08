@@ -6,8 +6,8 @@ Python3 scrapy web crawler for collecting company press releases
 
 Run a spider located in `./prcrawler/spiders/` from the command line:
 
-`$ scrapy crawl <spider>`
+`$ scrapy crawl <<spider>>`
 
-Run all spiders in `./prcrawler/spiders/` for firms in a given industry:
+Run all spiders in `./prcrawler/spiders/` for firms in a given (pre-formatted) industry:
 
-`$ python run_industry_prcrawler.py  <industry>`
+`$ python run_industry_prcrawler.py  <<industry>>`
