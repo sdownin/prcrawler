@@ -1,4 +1,4 @@
-# `prcrawler` Company Press Release web crawler
+# `prcrawler` Company Press Release Web Crawler
 
 Python3 scrapy web crawler for collecting company press releases
 
