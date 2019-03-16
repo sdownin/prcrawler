@@ -8,16 +8,20 @@ import datetime as dt #import arrow as ar
 from datetime import timezone
 
 
-def timestamp(datestr=None, tz=None):
+def timestamp(dt0=None, tz=timezone.utc):
     """ get UTC unix epoch timestamp (ex: 1445212800)
     """
-    if datestr is None:
-        return dt.datetime.now().replace(tzinfo=timezone.utc).timestamp()
+    if isinstance(dt0, dt.datetime):
+        return dt0.replace(tzinfo=tz).timestamp()
+    else:
+        return dt.datetime.now().replace(tzinfo=tz).timestamp()
 
-def datestring(datestr=None, tz=None):
+def datestring(dt0=None, tz=timezone.utc):
     """ get UTC datetime string of format 'YYYY-MM-DD HH:MM:SS'
     """
-    if datestr is None:
+    if isinstance(dt0, dt.datetime):
+        return dt0.replace(tzinfo=tz).strftime('%Y-%m-%d %H:%M:%S')
+    else:
         return dt.datetime.now().replace(tzinfo=timezone.utc).strftime('%Y-%m-%d %H:%M:%S')
 
 def get_month_number_from_name(monthString):
