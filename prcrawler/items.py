@@ -12,6 +12,7 @@ class PrcrawlerItem(scrapy.Item):
     # define the fields for your item here like:
     id = scrapy.Field()
     spider = scrapy.Field()
+    firm = scrapy.Field()
     industry = scrapy.Field()
     crawl_date = scrapy.Field()
     crawl_timestamp = scrapy.Field()
@@ -20,11 +21,13 @@ class PrcrawlerItem(scrapy.Item):
     status = scrapy.Field()
     headers = scrapy.Field()
     flags = scrapy.Field()
-    html = scrapy.Field()
+    text = scrapy.Field()
     ## parsed item fields
     date = scrapy.Field()
     timestamp = scrapy.Field()
     title = scrapy.Field()
     article = scrapy.Field()
     source = scrapy.Field()
+    location = scrapy.Field()
     tags = scrapy.Field()
+    images = scrapy.Field()

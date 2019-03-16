@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import scrapy, json, re
+import re
 import datetime as dt
 from uuid import uuid4
 from scrapy.spiders import CrawlSpider
@@ -31,6 +31,7 @@ class BaseCrawlSpider(CrawlSpider):
             as a record in the database or outpute file
         """
         # self.logger.info('parsed item page %s\n' % response.url)
+        bsoup = BeautifulSoup(response.body, 'html.parser') ## 'lxml'
         item = PrcrawlerItem()
         item['id'] = str(uuid4())
         item['spider'] = self.name
@@ -39,22 +40,22 @@ class BaseCrawlSpider(CrawlSpider):
         item['status'] = response.status
         item['headers'] = str(response.headers)
         item['flags'] = response.flags
-        item['html'] = response.text
+        item['text'] = bsoup.find('body').text.replace('\r',' ').replace('\n',' ')
         item['url_from'] = response.url
         for key in args.keys():
             item[key] = args[key]
-        # ##------TODO: parsed article items--------
-        bsoup = BeautifulSoup.parse(response.body, 'html.parser') ## 'lxml'
-        item['crawl_date'] = self.parse_date(bsoup, request)  ##TODO: datetime parse
-        if isinstance(item['crawl_date'], dt.datetime):
-            item['crawl_timestamp'] = timestamp(item['crawl_date'])
-        item['title'] = self.parse_title(bsoup, request)
-        item['article'] = self.parse_article(bsoup, request)
-        # item['source'] = self.parse_source(bsoup, request)
-        # item['location'] = self.parse_source(bsoup, request)
+        item['date'] = self.parse_date(bsoup, response)  ##TODO: datetime parse
+        if isinstance(item['date'], dt.datetime):
+            item['timestamp'] = timestamp(item['date'])
+        item['title'] = self.parse_title(bsoup, response)
+        item['article'] = self.parse_article(bsoup, response)
+        item['location'] = self.parse_location(bsoup, response)
+        item['source'] = self.parse_source(bsoup, response) ## TODO: add source
+        item['tags'] = self.parse_tags(bsoup, response)  ## TODO: add tags
+        item['images'] = self.parse_images(bsoup, response) ## TODO: add images download
         return item
 
-    def parse_items(self, response, request):
+    def parse_items(self, response):
         """ Main LinkExtractor callback for spiders that extend BaseCrawlSpider;
             parse items from all links in page request
         """
@@ -69,15 +70,16 @@ class BaseCrawlSpider(CrawlSpider):
                 if allowed_domain in link.url:
                     is_allowed = True
             if is_allowed:
-                yield self.parse_item(response, {'url_to':link.url})  
+                yield self.parse_item(response, {'url_to':link.url, 'firm':self.name})  
 
 
-    def parse_date(self, bsoup, request):
+
+    def parse_date(self, bsoup, response):
         """ Return datetime.datetime from arbitrary numberic|text date formats
         """
         ## regex partial match
         chron = bsoup.find('chron')
-        if len(chron) and isinstance(chron.text, str):
+        if chron is not None and isinstance(chron.text, str):
            dt0 = parse(chron.text)
            if dt0 is not None:
               return dt0
@@ -87,51 +89,57 @@ class BaseCrawlSpider(CrawlSpider):
            if dt0 is not None:
               return dt0
 
-    def parse_timezone(self, bsoup, request):
+    def parse_timezone(self, bsoup, response):
         """ Return datetime.datetime from arbitrary numberic|text date formats
         """
         pass
 
-    def parse_location(self, bsoup, request):
-        """ Return the location of the press release 
-        """
-        ## regex partial match
-        loc = bsoup.find('location')
-        if len(loc) and isinstance(loc.text, str):
-           return loc.text.capitalize()
-
-    def parse_title(self, bsoup, request):
-        """
+    def parse_title(self, bsoup, response):
+        """ Parse the press release or news article title
         """
         els = bsoup.find_all('h1')
         if len(els) == 1:
-            return els.pop(0).text.replace('\n','')
+            return els.pop(0).text.replace('\n',' ')
         elif len(els) > 1:
             els = bsoup.select('h1[id*=title]')
             if len(els) == 1:
-               return els.pop(0).text.replace('\n','')
+               return els.pop(0).text.replace('\n',' ')
             els = bsoup.select('h1[class*=title]')
             if len(els) == 1:
-               return els.pop(0).text.replace('\n','')
+               return els.pop(0).text.replace('\n',' ')
         ## TODO: robust logic for checking for page title outside of <h1>
         ## fallback just return end of url path
-        return request.url.split('/')[-1]
+        return response.url.split('/')[-1]
            
-
-    def parse_article(self, bsoup, request):
-        """ Parse the text of the news article from the web request 
+    def parse_article(self, bsoup, response):
+        """ Parse the body text of the press release or news article 
         """
         article = bsoup.find('article')
-        text = article.pop(0).text
-        if len(article):
-            return text.replace('\n','').replace('\r','')
-        
+        if article is not None and isinstance(article.text, str):
+            return article.text.replace('\n',' ').replace('\r',' ')
 
-    def parse_news_source(self, bsoup, request):
+    def parse_location(self, bsoup, request):
+        """ Return the location of article  
+        """
+        ## regex partial match
+        loc = bsoup.find('location')
+        if loc is not None and isinstance(loc.text, str):
+           return loc.text.capitalize()
+
+    def parse_source(self, bsoup, response):
         """
         """
         pass
-     
+
+    def parse_tags(self, bsoup, response):
+        """
+        """
+        return []
+
+    def parse_images(self, bsoup, response):
+        """
+        """
+        return []
       
 #    def testing(self):
 #        url = 'https://www.pfizer.com/news/press-release/press-release-detail/u_s_fda_approves_pfizer_s_oncology_biosimilar_trazimera_trastuzumab_qyyp_a_biosimilar_to_herceptin_1'
