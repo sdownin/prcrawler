@@ -517,3 +517,235 @@ None
 INFO: Item added to MongoDB!
 DEBUG: Scraped from <200 https://www.pfizer.com/people/history>
 None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.novartis.com/news/news-archive?type=manually_created_external_links>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.jnj.com/media-center/press-releases>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.novartis.com/news/media-releases/novartis-shareholders-approve-all-resolutions-proposed-board-directors-annual-general-meeting-0>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.jnj.com/latest-news>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.novartis.com/news/news-archive?page=1>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.pfizer.com/news/featured_stories/featured_stories_detail/my_sister_s_breast_cancer_diagnosis_and_what_it_meant_for_me>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.novartis.com/news/news-archive>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.pfizer.com/news/featured_stories/featured_stories_detail/more_at_risk_children_in_developing_countries_will_be_protected_against_pneumococcal_disease_thanks_to_new_and_expanded_partnerships>
+None
+DEBUG: Retrying <GET https://ourstory.jnj.com/privacy> (failed 1 times): [<twisted.python.failure.Failure twisted.internet.error.ConnectionLost: Connection to the other side was lost in a non-clean fashion: Connection lost.>]
+DEBUG: Retrying <GET https://www.novartis.com/news/media-releases/novartis-cosentyx-shows-superior-improvements-psoriasis-patients-quality-life-versus-janssens-il-23-stelara> (failed 1 times): [<twisted.python.failure.Failure twisted.internet.error.ConnectionLost: Connection to the other side was lost in a non-clean fashion: Connection lost.>]
+DEBUG: Retrying <GET https://www.pfizer.com/news/press-kits/ra-narrative> (failed 1 times): [<twisted.python.failure.Failure twisted.internet.error.ConnectionLost: Connection to the other side was lost in a non-clean fashion: Connection lost.>]
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://ourstory.jnj.com/cookiepolicy>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.jnj.com/janssen-announces-u-s-fda-approval-of-spravatotm-esketamine-ciii-nasal-spray-for-adults-with-treatment-resistant-depression-trd-who-have-cycled-through-multiple-treatments-without-relief>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.novartis.com/news/media-releases/novartis-data-confirm-rapid-response-and-high-efficacy-cosentyx-psoriasis-patients-first-time-china>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.pfizer.com/news/featured_stories/featured_stories_detail/shining_a_light_on_the_impact_of_rare_diseases>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.jnj.com/johnson-johnson-innovation-names-winners-of-inaugural-champions-of-science-africa-storytelling-challenge>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.pfizer.com/news/featured_stories/featured_stories_detail/new_rna_technology_could_get_the_flu_vaccine_right_every_year>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.jnj.com/media-center/press-releases?p=2>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.pfizer.com/people/history>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.novartis.com/news/news-archive?type=manually_created_external_links>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.jnj.com/media-center/press-releases>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.novartis.com/news/media-releases/novartis-shareholders-approve-all-resolutions-proposed-board-directors-annual-general-meeting-0>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.jnj.com/latest-news>
+None
+INFO: Crawled 7 pages (at 1 pages/min), scraped 31 items (at 13 items/min)
+INFO: Crawled 7 pages (at 1 pages/min), scraped 34 items (at 13 items/min)
+INFO: Crawled 11 pages (at 2 pages/min), scraped 54 items (at 16 items/min)
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.novartis.com/news/news-archive?page=1>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.pfizer.com/news/featured_stories/featured_stories_detail/my_sister_s_breast_cancer_diagnosis_and_what_it_meant_for_me>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.novartis.com/news/news-archive>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.pfizer.com/news/featured_stories/featured_stories_detail/more_at_risk_children_in_developing_countries_will_be_protected_against_pneumococcal_disease_thanks_to_new_and_expanded_partnerships>
+None
+DEBUG: Crawled (200) <GET https://ourstory.jnj.com/about> (referer: https://ourstory.jnj.com/)
+DEBUG: Retrying <GET https://investors.pfizer.com/why-invest-our-story/default.aspx> (failed 2 times): [<twisted.python.failure.Failure twisted.internet.error.ConnectionLost: Connection to the other side was lost in a non-clean fashion: Connection lost.>]
+DEBUG: Crawled (200) <GET https://www.jnj.com/janssen-announces-u-s-fda-approval-of-novel-tremfya-guselkumab-one-press-patient-controlled-injector-for-adults-with-moderate-to-severe-plaque-psoriasis> (referer: https://www.jnj.com/media-center/press-releases)
+DEBUG: Crawled (200) <GET https://www.novartis.com/news/media-releases/three-winners-2019-sandoz-healthcare-access-challenge-hack-are-announced-sxsw> (referer: https://www.novartis.com/news/news-archive)
+DEBUG: Crawled (200) <GET https://www.careers.jnj.com/career-stories/rebeca-lugo> (referer: https://www.careers.jnj.com/career-stories/maria-duda-kertesz)
+DEBUG: Crawled (200) <GET https://www.pfizer.com/news/press-kits/oncology> (referer: https://www.pfizer.com/news/press-release/press-releases-archive)
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://ourstory.jnj.com/termsofuse>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.jnj.com/media-center>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.novartis.com/news/news-archive?type=story>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.pfizer.com/news/press-kits/media-contacts>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://ourstory.jnj.com/cookiepolicy>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.jnj.com/janssen-announces-u-s-fda-approval-of-spravatotm-esketamine-ciii-nasal-spray-for-adults-with-treatment-resistant-depression-trd-who-have-cycled-through-multiple-treatments-without-relief>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.novartis.com/news/media-releases/novartis-data-confirm-rapid-response-and-high-efficacy-cosentyx-psoriasis-patients-first-time-china>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.pfizer.com/news/featured_stories/featured_stories_detail/shining_a_light_on_the_impact_of_rare_diseases>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.jnj.com/johnson-johnson-innovation-names-winners-of-inaugural-champions-of-science-africa-storytelling-challenge>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.pfizer.com/news/featured_stories/featured_stories_detail/new_rna_technology_could_get_the_flu_vaccine_right_every_year>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.jnj.com/media-center/press-releases?p=2>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.pfizer.com/people/history>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.novartis.com/news/news-archive?type=manually_created_external_links>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.jnj.com/media-center/press-releases>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.novartis.com/news/media-releases/novartis-shareholders-approve-all-resolutions-proposed-board-directors-annual-general-meeting-0>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.jnj.com/latest-news>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.novartis.com/news/news-archive?page=1>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.pfizer.com/news/featured_stories/featured_stories_detail/my_sister_s_breast_cancer_diagnosis_and_what_it_meant_for_me>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.novartis.com/news/news-archive>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.pfizer.com/news/featured_stories/featured_stories_detail/more_at_risk_children_in_developing_countries_will_be_protected_against_pneumococcal_disease_thanks_to_new_and_expanded_partnerships>
+None
+DEBUG: Retrying <GET https://www.jnj.com/personal-stories> (failed 1 times): [<twisted.python.failure.Failure twisted.internet.error.ConnectionLost: Connection to the other side was lost in a non-clean fashion: Connection lost.>]
+DEBUG: Retrying <GET https://www.pfizer.com/news/press-kits/frequently-requested-info> (failed 1 times): [<twisted.python.failure.Failure twisted.internet.error.ConnectionLost: Connection to the other side was lost in a non-clean fashion: Connection lost.>]
+DEBUG: Retrying <GET https://www.novartis.com/stories/discovery/enabling-130000-employees-grow-organization-committed-continuous-learning> (failed 1 times): [<twisted.python.failure.Failure twisted.internet.error.ConnectionLost: Connection to the other side was lost in a non-clean fashion: Connection lost.>]
+DEBUG: Retrying <GET https://ourstory.jnj.com/contact> (failed 1 times): [<twisted.python.failure.Failure twisted.internet.error.ConnectionLost: Connection to the other side was lost in a non-clean fashion: Connection lost.>]
+CRITICAL: Unhandled Error
+Traceback (most recent call last):
+  File "run_industry_prcrawler.py", line 56, in <module>
+    run()
+  File "run_industry_prcrawler.py", line 52, in run
+    reactor.run()
+  File "C:\Anaconda3\lib\site-packages\twisted\internet\base.py", line 1261, in run
+    self.mainLoop()
+  File "C:\Anaconda3\lib\site-packages\twisted\internet\base.py", line 1270, in mainLoop
+    self.runUntilCurrent()
+--- <exception caught here> ---
+  File "C:\Anaconda3\lib\site-packages\twisted\internet\base.py", line 869, in runUntilCurrent
+    f(*a, **kw)
+  File "C:\Anaconda3\lib\site-packages\twisted\internet\base.py", line 630, in stop
+    "Can't stop reactor that isn't running.")
+twisted.internet.error.ReactorNotRunning: Can't stop reactor that isn't running.
+
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://ourstory.jnj.com/termsofuse>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.jnj.com/media-center>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.novartis.com/news/news-archive?type=story>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.pfizer.com/news/press-kits/media-contacts>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://ourstory.jnj.com/cookiepolicy>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.jnj.com/janssen-announces-u-s-fda-approval-of-spravatotm-esketamine-ciii-nasal-spray-for-adults-with-treatment-resistant-depression-trd-who-have-cycled-through-multiple-treatments-without-relief>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.novartis.com/news/media-releases/novartis-data-confirm-rapid-response-and-high-efficacy-cosentyx-psoriasis-patients-first-time-china>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.pfizer.com/news/featured_stories/featured_stories_detail/shining_a_light_on_the_impact_of_rare_diseases>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.jnj.com/johnson-johnson-innovation-names-winners-of-inaugural-champions-of-science-africa-storytelling-challenge>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.pfizer.com/news/featured_stories/featured_stories_detail/new_rna_technology_could_get_the_flu_vaccine_right_every_year>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.jnj.com/media-center/press-releases?p=2>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.pfizer.com/people/history>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.novartis.com/news/news-archive?type=manually_created_external_links>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.jnj.com/media-center/press-releases>
+None
+INFO: Crawled 8 pages (at 1 pages/min), scraped 43 items (at 12 items/min)
+INFO: Crawled 8 pages (at 1 pages/min), scraped 45 items (at 11 items/min)
+INFO: Crawled 14 pages (at 3 pages/min), scraped 69 items (at 15 items/min)
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.novartis.com/news/media-releases/novartis-shareholders-approve-all-resolutions-proposed-board-directors-annual-general-meeting-0>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.jnj.com/latest-news>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.novartis.com/news/news-archive?page=1>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.pfizer.com/news/featured_stories/featured_stories_detail/my_sister_s_breast_cancer_diagnosis_and_what_it_meant_for_me>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.novartis.com/news/news-archive>
+None
+INFO: Item added to MongoDB!
+DEBUG: Scraped from <200 https://www.pfizer.com/news/featured_stories/featured_stories_detail/more_at_risk_children_in_developing_countries_will_be_protected_against_pneumococcal_disease_thanks_to_new_and_expanded_partnerships>
+None
+DEBUG: Retrying <GET https://www.careers.jnj.com/career-stories/matthew-simkovic> (failed 1 times): An error occurred while connecting: [Failure instance: Traceback (failure with no frames): <class 'twisted.internet.error.ConnectionLost'>: Connection to the other side was lost in a non-clean fashion: Connection lost.
+].
+DEBUG: Retrying <GET https://ourstory.jnj.com/archives> (failed 1 times): An error occurred while connecting: [Failure instance: Traceback (failure with no frames): <class 'twisted.internet.error.ConnectionLost'>: Connection to the other side was lost in a non-clean fashion: Connection lost.
+].
