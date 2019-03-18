@@ -5,17 +5,17 @@
 # all firms listed for a given industry
 #
 
-import os, scrapy, logging
+import os, logging
 import pandas as pd
 from scrapy.crawler import CrawlerRunner
 from scrapy.spiderloader import SpiderLoader
 from scrapy.utils.log import configure_logging
 from twisted.internet import reactor
 from argparse import ArgumentParser
-#from scrapy.settings import Settings, default_settings
-from scrapy.utils.project import get_project_settings
 from prcrawler.spiders.prspider import PRSpider
-from prcrawler import settings
+from scrapy.utils.project import get_project_settings
+#from scrapy.settings import Settings, default_settings
+# from prcrawler import settings
 
 ##------------------------------------
 ## Load Firm (& industry) items for
@@ -24,7 +24,7 @@ from prcrawler import settings
 #pd.set_option('max_columns',10)
 
 def run():
-    """ Main run function
+    """ Main web crawler run function
     """
     configure_logging(install_root_handler=False)
     logging.basicConfig(
@@ -37,7 +37,7 @@ def run():
     #args = par.parse_args()
     
     ## TODO: arguments to set multiple files in different paths
-    data_file = os.path.join(os.getcwd()) + '/prcrawler/data/firms_test.csv'
+    data_file = os.path.join(os.getcwd()) + '/data/firms_test.csv'
     df = pd.read_csv(data_file, na_values=[""])
 
     ## init runner for multiple spiders

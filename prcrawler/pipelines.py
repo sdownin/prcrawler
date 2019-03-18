@@ -32,12 +32,10 @@ class JsonWriterPipeline(object):
 
 class MongoPipeline(object):
 
-    # collection_name = 'scrapy_items_%s' % SETTINGS.BOT_NAME
-    collection_name = settings.MONGODB_COLLECTION
-
     def __init__(self, mongo_uri, mongo_db):
         self.mongo_uri = mongo_uri
         self.mongo_db = mongo_db
+        self.collection_name = settings.MONGODB_COLLECTION
 
     @classmethod
     def from_crawler(cls, crawler):
@@ -59,10 +57,7 @@ class MongoPipeline(object):
             if not data:
                 valid = False
                 raise DropItem("Missing {0}!".format(data))
-        if valid:
-        	### TODO: 
-        	###   - insert if not exists (upsert)
-        	###   - insert only if item has article title and body
+        if valid and (item['article'] is not None or not item['has_dom_article']):
             self.db[self.collection_name].insert_one(dict(item))
             logging.info("Item added to MongoDB!")
         return
