@@ -7,9 +7,9 @@ from scrapy.linkextractors import LinkExtractor
 from prcrawler.items import PrcrawlerItem
 from bs4 import BeautifulSoup
 from prcrawler.helpers import timestamp, datestring
-from time import sleep
-from numpy import random
 from dateparser import parse
+#from time import sleep
+#from numpy import random
 
 ## default allow_regex terms
 PR_KEYWORDS = [
@@ -44,7 +44,7 @@ class BaseCrawlSpider(CrawlSpider):
         item['url_from'] = response.url
         for key in args.keys():
             item[key] = args[key]
-        item['date'] = self.parse_date(bsoup, response)  ##TODO: datetime parse
+        item['date'] = self.parse_date(bsoup, response)  
         if isinstance(item['date'], dt.datetime):
             item['timestamp'] = timestamp(item['date'])
         item['title'] = self.parse_title(bsoup, response)
@@ -53,13 +53,14 @@ class BaseCrawlSpider(CrawlSpider):
         item['source'] = self.parse_source(bsoup, response) ## TODO: add source
         item['tags'] = self.parse_tags(bsoup, response)  ## TODO: add tags
         item['images'] = self.parse_images(bsoup, response) ## TODO: add images download
+        item['pdfs'] = self.parse_pdfs(bsoup, response) ## TODO: add PDFs download
         return item
 
     def parse_items(self, response):
         """ Main LinkExtractor callback for spiders that extend BaseCrawlSpider;
             parse items from all links in page request
         """
-        sleep(random.exponential(scale=1.5))
+#        sleep(random.exponential(scale=1.5))
         # Links from the page
         links = LinkExtractor(allow=self.allow_regex, unique=True).extract_links(response)
         # loop over links on page
@@ -70,7 +71,12 @@ class BaseCrawlSpider(CrawlSpider):
                 if allowed_domain in link.url:
                     is_allowed = True
             if is_allowed:
-                yield self.parse_item(response, {'url_to':link.url, 'firm':self.name})  
+                yield self.parse_item(response, {
+                    'url_to':link.url, 
+                    'industry':self.industry,
+                    'firm':self.name, 
+                    'has_dom_article':self.has_dom_article
+                })  
 
 
 
@@ -108,7 +114,7 @@ class BaseCrawlSpider(CrawlSpider):
             if len(els) == 1:
                return els.pop(0).text.replace('\n',' ')
         ## TODO: robust logic for checking for page title outside of <h1>
-        ## fallback just return end of url path
+        ## fallback: just return end of url path
         return response.url.split('/')[-1]
            
     def parse_article(self, bsoup, response):
@@ -140,7 +146,15 @@ class BaseCrawlSpider(CrawlSpider):
         """
         """
         return []
-      
+
+    def parse_pdfs(self, bsoup, response):
+        """
+        """
+        pdfs = [x['href'] for x in bsoup.select('a[href]') if '.pdf' in x]
+        for i,pdf in enumerate(pdfs):
+            pdfs[i] = '%s/%s' % (response.url.rstrip('/'), pdf.lstrip('/'))
+        return pdfs
+    
 #    def testing(self):
 #        url = 'https://www.pfizer.com/news/press-release/press-release-detail/u_s_fda_approves_pfizer_s_oncology_biosimilar_trazimera_trastuzumab_qyyp_a_biosimilar_to_herceptin_1'
 #        r = requests.get(url)

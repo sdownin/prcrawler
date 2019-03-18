@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import scrapy
 from scrapy.spiders import Rule
 from scrapy.linkextractors import LinkExtractor
 from prcrawler.spiders.base import BaseCrawlSpider

@@ -50,3 +50,22 @@ def convert_date(dateText, replacements=['\n','reviewed',',']):
     month_number = get_month_number_from_name(month)
 
     return dt.datetime(int(year),int(month_number),int(day), 1, 1, 1)
+
+def url_domain(url):
+    """ Returns the domain from a URL
+        @see https://stackoverflow.com/questions/9626535/get-protocol-host-name-from-url
+        
+        Parameters
+        ----------
+        
+        url : str 
+            A URL to parse its domain
+        
+        
+        Returns
+        ----------
+        
+        domain : str
+            The domain parsed from the URL 
+    """
+    return url.split("//")[-1].split("/")[0].split('?')[0]

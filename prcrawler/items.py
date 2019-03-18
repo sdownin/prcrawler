@@ -25,9 +25,11 @@ class PrcrawlerItem(scrapy.Item):
     ## parsed item fields
     date = scrapy.Field()
     timestamp = scrapy.Field()
+    has_dom_article = scrapy.Field()  ## 1=firm's press release pages have <article>; 0 otherwise
     title = scrapy.Field()
     article = scrapy.Field()
     source = scrapy.Field()
     location = scrapy.Field()
     tags = scrapy.Field()
     images = scrapy.Field()
+    pdfs = scrapy.Field()
