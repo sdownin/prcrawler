@@ -6,7 +6,7 @@ Python3 [Scrapy](https://scrapy.org/) web crawler for collecting company press r
 
 Place CSV files listing firms to crawl in the `./data/` directory. 
 
-Each data file should be formatted as follows:
+Data file format:
 
 industry | firm | pdf | start_url 
 --- | --- | --- | ---
