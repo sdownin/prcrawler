@@ -26,12 +26,19 @@ Column order is optional, and other columns (e.g., notes for reference) may be i
 
 ## Collecting Press Releases 
 
-Run a batch of simultaneous asynchronous crawlers for all files in the `./data/` directory by executing `prcrawler` from the command line:
+Options for executing a batch of simultaneous asynchronous `prcrawler`s from the command line. 
+
+Run all files in the `./data/` directory:
 
 `$ python run_industry_crawler.py`
 
-Run a a batch of simultaneous asynchronous `prcrawler`s for specific files in `./data/` with the optional files argument `-f`:
+Run specific files in `./data/` with the optional files argument `-f` (or `--files`):
 
-`$ python run_industry_crawler.py -f industry1.csv industry2.csv industry3.csv`
+`$ python run_industry_crawler.py -f datafile1.csv datafile2.csv datafile3.csv`
+
+`$ python run_industry_crawler.py --files datafile1.csv datafile2.csv datafile3.csv`
+
+
+## Logs and Debugging
 
 Log files for each run are written in `./logs/`. 
