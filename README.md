@@ -4,9 +4,9 @@ Python3 scrapy web crawler for collecting company press releases
 
 ## Getting Started 
 
-Place CSV files listing groups of firms to crawl in the `./data/` directory. 
+Place CSV files listing firms to crawl in the `./data/` directory. 
 
-Each data file format should be as follows:
+Each data file should be formatted as follows:
 
 industry | firm | pdf | start_url 
 --- | --- | --- | ---
@@ -18,10 +18,10 @@ Required columns include:
 
  - `industry`  [string] The firm's industry 
  - `firm`  [string] The firm name
- - `pdf`  [0,1] Flag indicating if press releases are formatted as PDFs (not HTML text)
- - `start_url`  [string]
+ - `pdf`  [0,1] Flag indicating if press releases are formatted as PDFs, not HTML text (1=yes, 0=no)
+ - `start_url`  [string] An example press release URL for the firm to start crawling links on that firm's domain. 
 
-Other columns (e.g., notes for reference) may be included in the data file but will not be processed.
+Column order is optional, and other columns (e.g., notes for reference) may be included in the data file but will not be processed.
 
 
 ## Collecting Press Releases 
