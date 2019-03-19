@@ -7,31 +7,51 @@
 
 import json, pymongo, logging
 from prcrawler import settings
+from scrapy import Request
 from scrapy.exceptions import DropItem
+from scrapy.pipelines.images import ImagesPipeline
+from scrapy.pipelines.files import FilesPipeline
 
 
-class PrcrawlerPipeline(object):
+class ImagesPipeline(ImagesPipeline):
+    """ Pipelines order: 1
+    """
+    def get_media_requests(self, item, info):
+        for image_url in item['image_urls']:
+            logging.info("ImagesPipeline::get_media_requests:  yielding Request(image_url)")
+            yield Request(image_url)
 
-    def process_item(self, item, spider):
-        return item
+    def item_completed(self, results, item, info):
+        image_paths = [x['path'] for ok, x in results if ok]
+        if image_paths:
+            item['image_paths'] = image_paths
+            logging.info("ImagesPipeline::item_completed:  added pdf_paths to item")
+            return item
+        else:
+            logging.info("Item contains no images")
+            
 
+class PdfsPipeline(FilesPipeline):
+    """ Pipelines order: 10
+    """
+    def get_media_requests(self, item, info):
+        for pdf_url in item['pdf_urls']:
+            logging.info("PdfsPipeline::get_media_requests:  yielding Request(pdf_url)")
+            yield Request(pdf_url)
 
-class JsonWriterPipeline(object):
-
-    def open_spider(self, spider):
-        self.file = open('items.jl', 'w')
-
-    def close_spider(self, spider):
-        self.file.close()
-
-    def process_item(self, item, spider):
-        line = json.dumps(dict(item)) + "\n"
-        self.file.write(line)
-        return
+    def item_completed(self, results, item, info):
+        pdf_paths = [x['path'] for ok, x in results if ok]
+        if pdf_paths:
+            item['pdf_paths'] = pdf_paths
+            logging.info("PdfsPipeline::item_completed:  get_media_requests: added pdf_paths to item")
+            return item
+        else:
+            logging.info("Item contains no PDFs")
 
 
 class MongoPipeline(object):
-
+    """ Pipelines order: 100
+    """
     def __init__(self, mongo_uri, mongo_db):
         self.mongo_uri = mongo_uri
         self.mongo_db = mongo_db
@@ -61,6 +81,21 @@ class MongoPipeline(object):
             self.db[self.collection_name].insert_one(dict(item))
             logging.info("Item added to MongoDB!")
         return
+    
+
+class JsonWriterPipeline(object):
+    """ Pipelines order: 200
+    """
+    def open_spider(self, spider):
+        self.file = open('items.jl', 'w')
+
+    def close_spider(self, spider):
+        self.file.close()
+
+    def process_item(self, item, spider):
+        line = json.dumps(dict(item)) + "\n"
+        self.file.write(line)
+        return
 
 
 class DuplicatesPipeline(object):
@@ -74,3 +109,9 @@ class DuplicatesPipeline(object):
         else:
             self.ids_seen.add(item['id'])
             return item
+
+
+class PrcrawlerPipeline(object):
+
+    def process_item(self, item, spider):
+        return item

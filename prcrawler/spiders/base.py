@@ -52,8 +52,6 @@ class BaseCrawlSpider(CrawlSpider):
         item['location'] = self.parse_location(bsoup, response)
         item['source'] = self.parse_source(bsoup, response) ## TODO: add source
         item['tags'] = self.parse_tags(bsoup, response)  ## TODO: add tags
-        item['images'] = self.parse_images(bsoup, response) ## TODO: add images download
-        item['pdfs'] = self.parse_pdfs(bsoup, response) ## TODO: add PDFs download
         return item
 
     def parse_items(self, response):
@@ -150,10 +148,12 @@ class BaseCrawlSpider(CrawlSpider):
     def parse_pdfs(self, bsoup, response):
         """
         """
-        pdfs = [x['href'] for x in bsoup.select('a[href]') if '.pdf' in x]
-        for i,pdf in enumerate(pdfs):
-            pdfs[i] = '%s/%s' % (response.url.rstrip('/'), pdf.lstrip('/'))
-        return pdfs
+        return []
+    
+#        pdfs = [x['href'] for x in bsoup.select('a[href]') ]
+#        for i,pdf in enumerate(pdfs):
+#            pdfs[i] = '%s/%s' % (response.url.rstrip('/'), pdf.lstrip('/'))
+#        return pdfs
     
 #    def testing(self):
 #        url = 'https://www.pfizer.com/news/press-release/press-release-detail/u_s_fda_approves_pfizer_s_oncology_biosimilar_trazimera_trastuzumab_qyyp_a_biosimilar_to_herceptin_1'

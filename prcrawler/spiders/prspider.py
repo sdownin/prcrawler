@@ -13,7 +13,7 @@ class PRSpider(BaseCrawlSpider):
         ## Check press release webpage has <article> elements and
         ## set has_dom_article attribute 
         r = requests.get(params['start_url'])
-        bsoup = BeautifulSoup(r.text)
+        bsoup = BeautifulSoup(r.text, 'html.parser')
         self.has_dom_article = 1 if bsoup.find('article') is not None else 0
         
         ## Set start_urls and allowed_domains
@@ -37,6 +37,9 @@ class PRSpider(BaseCrawlSpider):
         ## Set name
         self.name = params['firm']
 #        print("SET self.name %s" % self.name)
+        
+        ## Set industry
+        self.industry = params['industry']
         
         ## Set rules
         self._rules = [

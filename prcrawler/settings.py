@@ -98,7 +98,9 @@ COOKIES_ENABLED = False
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    'prcrawler.pipelines.MongoPipeline': 300
+      'prcrawler.pipelines.ImagesPipeline': 1   ## extends 'scrapy.pipelines.images.ImagesPipeline'
+    , 'prcrawler.pipelines.PdfsPipeline': 10   ## extends 'scrapy.pipelines.files.FilesPipeline'
+    , 'prcrawler.pipelines.MongoPipeline': 100
    # ,'prcrawler.pipelines.JsonWriterPipeline': 400
    # ,'prcrawler.pipelines.PrcrawlerPipeline': 700
    # ,'prcrawler.pipelines.DuplicatesPipeline': 800
@@ -127,3 +129,6 @@ ITEM_PIPELINES = {
 
 # Process broken requests
 DOWNLOAD_FAIL_ON_DATALOSS = False
+
+# Media redirects
+MEDIA_ALLOW_REDIRECTS = True

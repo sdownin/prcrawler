@@ -13,6 +13,7 @@ from twisted.internet import reactor
 from argparse import ArgumentParser
 from prcrawler.spiders.prspider import PRSpider
 from scrapy.utils.project import get_project_settings
+from prcrawler.helpers import timestamp
 
 ##------------------------------------
 ## Load Firm (& industry) items for
@@ -25,7 +26,7 @@ def run():
     """
     configure_logging(install_root_handler=False)
     logging.basicConfig(
-        filename='log.txt',
+        filename='log_%s.txt' % round(timestamp()),
         format='%(levelname)s: %(message)s',
         level=logging.INFO
     )
@@ -38,7 +39,7 @@ def run():
     
     ## if no files specified, run all files in data dir
     data_dir = os.path.join(os.getcwd(),'data')
-    if files is None:
+    if not files:
         files = os.listdir(data_dir)
     print('files to crawl:')
     print(files)
