@@ -24,9 +24,12 @@ from prcrawler.helpers import timestamp
 def run():
     """ Main web crawler run function
     """
+    work_dir = os.getcwd()
+    data_dir = os.path.join(work_dir,'data')
+    log_dir = os.path.join(work_dir,'logs')
     configure_logging(install_root_handler=False)
     logging.basicConfig(
-        filename='log_%s.txt' % round(timestamp()),
+        filename=os.path.join(log_dir,'log_%s.txt' % round(timestamp())),
         format='%(levelname)s: %(message)s',
         level=logging.INFO
     )
@@ -38,7 +41,6 @@ def run():
     files = args.files.split(',') if args.files is not None else []
     
     ## if no files specified, run all files in data dir
-    data_dir = os.path.join(os.getcwd(),'data')
     if not files:
         files = os.listdir(data_dir)
     print('files to crawl:')

@@ -4,10 +4,34 @@ Python3 scrapy web crawler for collecting company press releases
 
 ## Getting Started 
 
-Run a spider located in `./prcrawler/spiders/` from the command line:
+Place CSV files listing groups of firms to crawl in the `./data/` directory. 
 
-`$ scrapy crawl <<spider>>`
+Each data file format should be as follows:
 
-Run all spiders in `./prcrawler/spiders/` for firms in a given (pre-formatted) industry:
+industry | firm | pdf | start_url 
+--- | --- | --- | ---
+pharma | pfizer | 0 | https://www.pfizer.com/news/press-release/press-release-detail/augustus_demonstrates_favorable_safety_results_of_eliquis_versus_vitamin_k_antagonists_in_non_valvular_atrial_fibrillation_patients_with_acute_coronary_syndrome_and_or_undergoing_percutaneous_coronary_intervention 
+pharma | sanofi | 1 | https://mediaroom.sanofi.com/en/press-releases/ 
+... | ... | ... | ...
 
-`$ python run_industry_prcrawler.py  <<industry>>`
+Required columns include: 
+
+ - `industry`  [string] The firm's industry 
+ - `firm`  [string] The firm name
+ - `pdf`  [0,1] Flag indicating if press releases are formatted as PDFs (not HTML text)
+ - `start_url`  [string]
+
+Other columns (e.g., notes for reference) may be included in the data file but will not be processed.
+
+
+## Collecting Press Releases 
+
+Run a batch of simultaneous asynchronous crawlers for all files in the `./data/` directory by executing `prcrawler` from the command line:
+
+`$ python run_industry_crawler.py`
+
+Run a a batch of simultaneous asynchronous `prcrawler`s for specific files in `./data/` with the optional files argument `-f`:
+
+`$ python run_industry_crawler.py -f industry1.csv industry2.csv industry3.csv`
+
+Log files for each run are written in `./logs/`. 

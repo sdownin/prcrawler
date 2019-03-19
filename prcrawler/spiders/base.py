@@ -2,6 +2,7 @@
 import re
 import datetime as dt
 from uuid import uuid4
+from scrapy import Request
 from scrapy.spiders import CrawlSpider
 from scrapy.linkextractors import LinkExtractor
 from prcrawler.items import PrcrawlerItem
@@ -14,6 +15,10 @@ from dateparser import parse
 ## default allow_regex terms
 PR_KEYWORDS = [
     'news','press','media','story','stories','detail','archive'
+]
+
+MEDIA_EXTS = [
+    '.pdf','.jpg','.jpeg','.png','.gif','.tiff','.bmp','.exif'
 ]
 
 
@@ -53,6 +58,11 @@ class BaseCrawlSpider(CrawlSpider):
         item['source'] = self.parse_source(bsoup, response) ## TODO: add source
         item['tags'] = self.parse_tags(bsoup, response)  ## TODO: add tags
         return item
+    
+    def parse_pdf(self, response):
+        """
+        """
+        return
 
     def parse_items(self, response):
         """ Main LinkExtractor callback for spiders that extend BaseCrawlSpider;
@@ -61,6 +71,12 @@ class BaseCrawlSpider(CrawlSpider):
 #        sleep(random.exponential(scale=1.5))
         # Links from the page
         links = LinkExtractor(allow=self.allow_regex, unique=True).extract_links(response)
+        print("PARSE_ITEMS() : LINKS : ")
+        print([l.url for l in links])
+        
+#        exit()
+#        quit()
+        
         # loop over links on page
         for link in links:
             # Check whether the domain of the URL of the link is allowed; so whether it is in one of the allowed domains
@@ -68,12 +84,18 @@ class BaseCrawlSpider(CrawlSpider):
             for allowed_domain in self.allowed_domains:
                 if allowed_domain in link.url:
                     is_allowed = True
+            for ext in MEDIA_EXTS:
+                if ext in link.url:
+                    is_allowed = False
             if is_allowed:
                 yield self.parse_item(response, {
-                    'url_to':link.url, 
-                    'industry':self.industry,
-                    'firm':self.name, 
-                    'has_dom_article':self.has_dom_article
+                    'url_to': link.url, 
+                    'industry': self.industry,
+                    'firm': self.name, 
+                    'has_dom_article': self.has_dom_article
+#                    ,
+#                    'image_urls': image_urls,
+#                    'pdf_urls': pdf_urls
                 })  
 
 
