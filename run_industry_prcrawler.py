@@ -27,6 +27,12 @@ def run():
     work_dir = os.getcwd()
     data_dir = os.path.join(work_dir,'data')
     log_dir = os.path.join(work_dir,'logs')
+
+    ## add logs directory
+    if not os.path.exists(log_dir):
+        os.makedirs(log_dir)
+
+    ## logging
     configure_logging(install_root_handler=False)
     logging.basicConfig(
         filename=os.path.join(log_dir,'log_%s.txt' % round(timestamp())),

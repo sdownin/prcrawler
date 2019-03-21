@@ -1,2 +1,5 @@
-## ignore log files
+## log files
 log_*.txt
+
+## spyder project config
+.spyproject/*

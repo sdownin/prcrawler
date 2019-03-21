@@ -106,14 +106,14 @@ class BaseCrawlSpider(CrawlSpider):
         ## regex partial match
         chron = bsoup.find('chron')
         if chron is not None and isinstance(chron.text, str):
-           dt0 = parse(chron.text)
-           if dt0 is not None:
-              return dt0
+            dt0 = parse(chron.text)
+            if dt0 is not None:
+                return dt0
         spans = bsoup.find_all(['span','div'], attrs={'class':re.compile('.*date.*')})
         while len(spans):
-           dt0 = parse(spans.pop(0).text)
-           if dt0 is not None:
-              return dt0
+            dt0 = parse(spans.pop(0).text)
+            if dt0 is not None:
+                return dt0
 
     def parse_timezone(self, bsoup, response):
         """ Return datetime.datetime from arbitrary numberic|text date formats
@@ -129,10 +129,10 @@ class BaseCrawlSpider(CrawlSpider):
         elif len(els) > 1:
             els = bsoup.select('h1[id*=title]')
             if len(els) == 1:
-               return els.pop(0).text.replace('\n',' ')
+                return els.pop(0).text.replace('\n',' ')
             els = bsoup.select('h1[class*=title]')
             if len(els) == 1:
-               return els.pop(0).text.replace('\n',' ')
+                return els.pop(0).text.replace('\n',' ')
         ## TODO: robust logic for checking for page title outside of <h1>
         ## fallback: just return end of url path
         return response.url.split('/')[-1]
