@@ -5,7 +5,11 @@
 # See documentation in:
 # https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
+import base64
 from scrapy import signals
+from scrapy.http import Response
+from prcrawler.browser import WebpageClient
+from bs4 import BeautifulSoup
 
 
 class PrcrawlerSpiderMiddleware(object):
@@ -18,19 +22,37 @@ class PrcrawlerSpiderMiddleware(object):
         # This method is used by Scrapy to create your spiders.
         s = cls()
         crawler.signals.connect(s.spider_opened, signal=signals.spider_opened)
+        print('----------PrcrawlerSpiderMiddleware::from_crawler---------')
+        print('crawler')
+        print(crawler)
+        print('cls')
+        print(s)
+        # print('crawler.spider.start_urls')
+        # print(crawler.spider.start_urls)
+        # page = WebpageClient(crawler.spider.start_urls[0])   
+        # bsoup = BeautifulSoup(page.html, 'html.parser')
+        # jslist = bsoup.select('a[aria-label="Download"]')
+        # if jslist:
+        #     print([x.attrs['href'] for x in jslist])
+        # else:
+        #     print('no href links')
         return s
 
     def process_spider_input(self, response, spider):
         # Called for each response that goes through the spider
         # middleware and into the spider.
-
+        print('----------PrcrawlerSpiderMiddleware::process_spider_input---------')
+        print('response')
+        print(response)
+        print('spider')
+        print(spider)
         # Should return None or raise an exception.
         return None
 
     def process_spider_output(self, response, result, spider):
         # Called with the results returned from the Spider, after
         # it has processed the response.
-
+        # print('----------PrcrawlerSpiderMiddleware::process_spider_output---------')
         # Must return an iterable of Request, dict or Item objects.
         for i in result:
             yield i
@@ -71,8 +93,14 @@ class PrcrawlerDownloaderMiddleware(object):
     def process_request(self, request, spider):
         # Called for each request that goes through the downloader
         # middleware.
-
-        # Must either:
+        print('--------PrcrawlerDownloaderMiddleware::process_request----------------')
+        # page = WebpageClient(request.url)   
+        # response = Response(url=request.url, 
+        #     body=base64.b64decode(page.html), status=200)
+        # print(' WebpageClient --> TextResponse:')
+        # print(response)
+        # return response
+        ## Must either:
         # - return None: continue processing this request
         # - or return a Response object
         # - or return a Request object
@@ -82,7 +110,15 @@ class PrcrawlerDownloaderMiddleware(object):
 
     def process_response(self, request, response, spider):
         # Called with the response returned from the downloader.
-
+        print('--------PrcrawlerDownloaderMiddleware::process_response----------------')
+        page = WebpageClient(request.url)   
+        response.replace(body=page.html.encode())
+        print('response')
+        print(response)
+        print(response.url)
+        bsoup = BeautifulSoup(response.text, 'html.parser')
+        jslist = bsoup.select('a[aria-label="Download"]')
+        print([x.attrs['href'] for x in jslist])
         # Must either;
         # - return a Response object
         # - return a Request object

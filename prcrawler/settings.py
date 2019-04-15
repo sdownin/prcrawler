@@ -18,7 +18,7 @@ NEWSPIDER_MODULE = 'prcrawler.spiders'
 MONGO_URI = 'localhost' #'mongodb://127.0.0.1'
 MONGO_PORT = 27017
 MONGO_DATABASE = 'prcrawler'
-MONGODB_COLLECTION  = 'items'
+MONGODB_COLLECTION  = 'items_test1'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 USER_AGENT = 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36',
@@ -79,15 +79,15 @@ COOKIES_ENABLED = False
 
 # Enable or disable spider middlewares
 # See https://doc.scrapy.org/en/latest/topics/spider-middleware.html
-#SPIDER_MIDDLEWARES = {
-#    'prcrawler.middlewares.PrcrawlerSpiderMiddleware': 543,
-#}
+# SPIDER_MIDDLEWARES = {
+#     'prcrawler.middlewares.PrcrawlerSpiderMiddleware': 543,
+# }
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'prcrawler.middlewares.PrcrawlerDownloaderMiddleware': 543,
-#}
+DOWNLOADER_MIDDLEWARES = {
+   'prcrawler.middlewares.PrcrawlerDownloaderMiddleware': 543,
+}
 
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html

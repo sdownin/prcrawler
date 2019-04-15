@@ -70,9 +70,11 @@ def run():
     
         ## run web crawlers per domain in data file
         for index, row in df.iterrows():
+            print(row)
             runner.crawl(PRSpider, params=row.to_dict())
             d = runner.join()
             d.addBoth(lambda _: reactor.stop())
+            break
             
         # after running, the script will block here until all crawling jobs are finished
         reactor.run() 

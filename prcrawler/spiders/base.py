@@ -9,8 +9,8 @@ from prcrawler.items import PrcrawlerItem
 from bs4 import BeautifulSoup
 from prcrawler.helpers import timestamp, datestring
 from dateparser import parse
-#from time import sleep
-#from numpy import random
+from time import sleep
+from numpy.random import exponential
 
 ## default allow_regex terms
 PR_KEYWORDS = [
@@ -35,6 +35,11 @@ class BaseCrawlSpider(CrawlSpider):
         """ parse one scrapy item to be saved 
             as a record in the database or outpute file
         """
+        print('-------BaseCrawlSpider::parse_item--------')
+        print('response')
+        print(response)
+        print('args')
+        print(args)
         # self.logger.info('parsed item page %s\n' % response.url)
         bsoup = BeautifulSoup(response.body, 'html.parser') ## 'lxml'
         item = PrcrawlerItem()
@@ -68,15 +73,10 @@ class BaseCrawlSpider(CrawlSpider):
         """ Main LinkExtractor callback for spiders that extend BaseCrawlSpider;
             parse items from all links in page request
         """
-#        sleep(random.exponential(scale=1.5))
         # Links from the page
+        print("----------BaseCrawlSpider::parse_items ---------")
         links = LinkExtractor(allow=self.allow_regex, unique=True).extract_links(response)
-        print("PARSE_ITEMS() : LINKS : ")
         print([l.url for l in links])
-        
-#        exit()
-#        quit()
-        
         # loop over links on page
         for link in links:
             # Check whether the domain of the URL of the link is allowed; so whether it is in one of the allowed domains
