@@ -72,9 +72,10 @@ def run():
         for index, row in df.iterrows():
             ## dynamic content: temporarily skip
             if int(row.pdf):
-                print('skipping %s for dynamic pdf content' % row.firm)
+                print(' skipping %s for dynamic pdf content' % row.firm)
                 next
             ## runner crawl spider 
+            print(' running %s' % row.firm)
             runner.crawl(PRSpider, params=row.to_dict())
             d = runner.join()
             d.addBoth(lambda _: reactor.stop())
